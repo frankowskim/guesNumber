@@ -18,14 +18,13 @@ const secretNumberWidth = width =>
 const displayScore = score =>
   (document.querySelector('.score').textContent = score);
 
-document.querySelector('.check').addEventListener('click', function () {
-  const guess = Number(document.querySelector('.guess').value);
-  console.log(guess, typeof guess);
+const num = document.querySelector('.guess');
+
+const check = function () {
+  const guess = Number(num.value);
 
   if (!guess) {
     displayMessage('⛔ No number!');
-
-    //
   } else if (guess === secretNumber) {
     displayMessage('🎉 Correct number!');
     displayNumber(secretNumber);
@@ -37,15 +36,26 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.highscore').textContent = highScore;
   } else if (guess !== secretNumber) {
     if (score > 1) {
-      displayMessage(guess > secretNumber ? '📈Too high!' : '📉Too low!');
+      displayMessage(
+        guess > secretNumber
+          ? `${guess} is 📈Too high!`
+          : `${guess} is 📉Too low!`
+      );
       score--;
       displayScore(score);
+      num.value = '';
     } else {
       displayMessage('🛑 You lost the game!');
       displayScore(0);
     }
   }
+};
+
+num.addEventListener('keypress', e => {
+  if (e.key === 'Enter') check();
 });
+
+document.querySelector('.check').addEventListener('click', check);
 
 document.querySelector('.again').addEventListener('click', function () {
   score = 20;

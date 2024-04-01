@@ -117,3 +117,40 @@ h1 {
 .label-score {
   margin-bottom: 2rem;
 }
+
+@media (max-width: 1250px) {
+  header {
+    height: 35vh;
+  }
+
+  main {
+    flex-direction: column;
+    margin-top: 5rem;
+    height: 65vh;
+  }
+  .left {
+    order: 1;
+    margin-top: 0px;
+  }
+
+  .right {
+    margin-bottom: 0px;
+    width: 80vw;
+  }
+
+  .guess {
+    font-size: 3rem;
+  }
+
+  .message {
+    margin-bottom: 2rem;
+  }
+
+  .btn {
+    padding: 1rem 1rem;
+  }
+
+  .between {
+    width: 130px;
+  }
+}
